@@ -1,0 +1,24 @@
+{
+  "name": "wx-js-api",
+  "version": "0.0.1",
+  "description": "微信官方 js-sdk es6 版本",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hxdyj/wx-js-api.git"
+  },
+  "keywords": [
+    "weixin",
+    "wechat",
+    "jssdk"
+  ],
+  "author": "hxdyj",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hxdyj/wx-js-api/issues"
+  },
+  "homepage": "https://github.com/hxdyj/wx-js-api#readme"
+}
