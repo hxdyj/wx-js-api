@@ -26,6 +26,55 @@
  *
  * Created by wibrst on 2015/1/10.
  */
+type GetEnvParam = {
+  (cb: {
+    miniprogram: boolean
+  }): void
+}
+type GetEnv = {
+  (cb: GetEnvParam): void
+}
+
+type PostMessage = {
+  (param: {
+    data: unknown
+  }): void
+}
+
+
+type CommonCall = {
+  success?: Function,
+  fail?: Function,
+  complete?: Function,
+}
+
+type RouteParam = {
+  url: string
+} & CommonCall
+
+
+type RouteFunction<T> = {
+  (param: T): void
+}
+
+type NavigateToParam = RouteParam & {
+  events?: Object
+}
+
+type NavigateBackParam = {
+  delta?: number,
+} & CommonCall
+
+type MiniProgram = {
+  getEnv: GetEnv,
+  postMessage: PostMessage,
+  redirectTo: RouteFunction<RouteParam>,
+  reLaunch: RouteFunction<RouteParam>,
+  switchTab: RouteFunction<RouteParam>,
+  navigateTo: RouteFunction<NavigateToParam>,
+  navigateBack: RouteFunction<NavigateBackParam>
+}
+
 
 
 declare class wx {
@@ -34,70 +83,70 @@ declare class wx {
    * 通过config接口注入权限验证配置
    * @param bodyConfig
    */
-  static config( bodyConfig:BodyConfig ):void;
+  static config(bodyConfig: BodyConfig): void;
 
 
   /**
    * 通过ready接口处理成功验证
    * @param cbValidated 成功验证后的处理函数
    */
-  static ready( cbValidated:Function ):void;
+  static ready(cbValidated: Function): void;
 
 
   /**
    * 通过error接口处理失败验证
    * @param cbError 处理失败验证后的处理函数
    */
-  static error( cbError:Function ):void;
+  static error(cbError: Function): void;
 
 
   /**
    * 判断当前客户端版本是否支持指定JS接口
    * @param bodyCheckJsAPISupport
    */
-  static checkJsApi( bodyCheckJsAPISupport:BodyCheckJsAPISupport ):void;
+  static checkJsApi(bodyCheckJsAPISupport: BodyCheckJsAPISupport): void;
 
 
   /**
    * 获取“分享到朋友圈”按钮点击状态及自定义分享内容接口
    * @param bodyMenuShareTimeline
    */
-  static onMenuShareTimeline( bodyMenuShareTimeline:BodyMenuShareTimeline ):void;
+  static onMenuShareTimeline(bodyMenuShareTimeline: BodyMenuShareTimeline): void;
 
 
   /**
    * 获取“分享给朋友”按钮点击状态及自定义分享内容接口
    * @param bodyMenuShareAppMessage
    */
-  static onMenuShareAppMessage( bodyMenuShareAppMessage:BodyMenuShareAppMessage ):void;
+  static onMenuShareAppMessage(bodyMenuShareAppMessage: BodyMenuShareAppMessage): void;
 
 
   /**
    * 获取“分享到QQ”按钮点击状态及自定义分享内容接口
    * @param bodyMenuShareQQ
    */
-  static onMenuShareQQ( bodyMenuShareQQ:BodyMenuShareQQ ):void;
+  static onMenuShareQQ(bodyMenuShareQQ: BodyMenuShareQQ): void;
 
 
   /**
    * 自定义“分享到朋友圈”及“分享到QQ空间”按钮的分享内容
    * @param bodyTimelineShareData
    */
-  static updateTimelineShareData( bodyTimelineShareData:BodyTimelineShareData ):void;
+  static updateTimelineShareData(bodyTimelineShareData: BodyTimelineShareData): void;
 
 
   /**
    * 自定义“分享给朋友”及“分享到QQ”按钮的分享内容
    * @param bodyAppMessageShareData
    */
-  static updateAppMessageShareData( bodyAppMessageShareData:BodyAppMessageShareData ):void;
+  static updateAppMessageShareData(bodyAppMessageShareData: BodyAppMessageShareData): void;
 
 
   /**
    * 获取“分享到腾讯微博”按钮点击状态及自定义分享内容接口
    * @param bodyMenuShareWeibo
    */
-  static onMenuShareWeibo( bodyMenuShareWeibo:BodyMenuShareWeibo ):void;
+  static onMenuShareWeibo(bodyMenuShareWeibo: BodyMenuShareWeibo): void;
 
 
   /// 华丽的分界线， 以下接口参数结构较简单或使用较少，均可自行查阅微信官方api文档给出适合的参数
@@ -106,84 +155,84 @@ declare class wx {
    * 拍照或从手机相册中选图接口
    * @param bodyChooseImage
    */
-  static chooseImage( body:Object ):void;
+  static chooseImage(body: Object): void;
 
   /**
    * 预览图片接口
    * @param body
    */
-  static previewImage( body:Object ):void;
+  static previewImage(body: Object): void;
 
   /**
    * 上传图片接口
    * @param body
    */
-  static uploadImage( body:Object ):void;
+  static uploadImage(body: Object): void;
 
   /**
    * 下载图片接口
    * @param body
    */
-  static downloadImage( body:Object ):void;
+  static downloadImage(body: Object): void;
 
   /**
    * 开始录音接口
    * @param body
    */
-  static startRecord( body:Object ):void;
+  static startRecord(body: Object): void;
 
   /**
    * 停止录音接口
    * @param body
    */
-  static stopRecord( body:Object ):void;
+  static stopRecord(body: Object): void;
 
   /**
    * 监听录音自动停止接口
    * @param body
    */
-  static onVoiceRecordEnd( body:Object ):void;
+  static onVoiceRecordEnd(body: Object): void;
 
 
   /**
    * 播放语音接口
    * @param body
    */
-  static playVoice( body:Object ):void;
+  static playVoice(body: Object): void;
 
 
   /**
    * 暂停播放接口
    * @param body
    */
-  static pauseVoice( body:Object ):void;
+  static pauseVoice(body: Object): void;
 
 
   /**
    * 停止播放接口
    * @param body
    */
-  static stopVoice( body:Object ):void;
+  static stopVoice(body: Object): void;
 
 
   /**
    * 监听语音播放完毕接口
    * @param body
    */
-  static onVoicePlayEnd( body:Object ):void;
+  static onVoicePlayEnd(body: Object): void;
 
   /**
    * 上传语音接口
    * @param body
    */
-  static uploadVoice( body:Object ):void;
+  static uploadVoice(body: Object): void;
 
 
   /**
    * 下载语音接口
    * @param body
    */
-  static downloadVoice( body:Object ):void;
+  static downloadVoice(body: Object): void;
 
 
   // ---- 智能接口
@@ -192,7 +241,7 @@ declare class wx {
    * 识别音频并返回识别结果接口
    * @param body
    */
-  static translateVoice( body:Object ):void;
+  static translateVoice(body: Object): void;
 
 
   /// ---- 设备信息
@@ -202,7 +251,7 @@ declare class wx {
 
    * @param body
    */
-  static getNetworkType( body:Object ):void;
+  static getNetworkType(body: Object): void;
 
 
   /// ---- 地理位置
@@ -211,14 +260,14 @@ declare class wx {
    * 使用微信内置地图查看位置接口
    * @param body
    */
-  static openLocation( body:Object ):void;
+  static openLocation(body: Object): void;
 
 
   /**
    * 获取地理位置接口
    * @param body
    */
-  static getLocation( body:Object ):void;
+  static getLocation(body: Object): void;
 
   /// ---- 界面操作
 
@@ -226,43 +275,43 @@ declare class wx {
    * 隐藏右上角菜单接口
    * @param body
    */
-  static hideOptionMenu( body:Object ):void;
+  static hideOptionMenu(body: Object): void;
 
   /**
    * 显示右上角菜单接口
    * @param body
    */
-  static showOptionMenu( body:Object ):void;
+  static showOptionMenu(body: Object): void;
 
   /**
    * 关闭当前网页窗口接口
    * @param body
    */
-  static closeWindow( body:Object ):void;
+  static closeWindow(body: Object): void;
 
   /**
    * 批量隐藏功能按钮接口
    * @param body
    */
-  static hideMenuItems( body:Object ):void;
+  static hideMenuItems(body: Object): void;
 
   /**
    * 批量显示功能按钮接口
    * @param body
    */
-  static showMenuItems( body:Object ):void;
+  static showMenuItems(body: Object): void;
 
   /**
    * 隐藏所有非基础按钮接口
    * @param body
    */
-  static hideAllNonBaseMenuItem( body:Object ):void;
+  static hideAllNonBaseMenuItem(body: Object): void;
 
   /**
    * 显示所有功能按钮接口
    * @param body
    */
-  static showAllNonBaseMenuItem( body:Object ):void;
+  static showAllNonBaseMenuItem(body: Object): void;
 
   /// ---- 微信扫一扫
 
@@ -270,7 +319,7 @@ declare class wx {
    * 调起微信扫一扫接口
    * @param body
    */
-  static scanQRCode( body:Object ):void;
+  static scanQRCode(body: Object): void;
 
 
   /// ---- 微信小店
@@ -279,7 +328,7 @@ declare class wx {
    * 跳转微信商品页接口
    * @param body
    */
-  static openProductSpecificView( body:Object ):void;
+  static openProductSpecificView(body: Object): void;
 
 
   /// ---- 微信卡券
@@ -288,19 +337,19 @@ declare class wx {
    * 调起适用于门店的卡券列表并获取用户选择列表
    * @param body
    */
-  static chooseCard( body:Object ):void;
+  static chooseCard(body: Object): void;
 
   /**
    * 批量添加卡券接口
    * @param body
    */
-  static addCard( body:Object ):void;
+  static addCard(body: Object): void;
 
   /**
    * 查看微信卡包中的卡券接口
    * @param body
    */
-  static openCard( body:Object ):void;
+  static openCard(body: Object): void;
 
   /// ---- 微信支付
 
@@ -308,7 +357,9 @@ declare class wx {
    * 发起一个微信支付请求
    * @param body
    */
-  static chooseWXPay( body:Object ):void;
+  static chooseWXPay(body: Object): void;
+
+  static miniProgram: MiniProgram | undefined
 
 }
 
@@ -320,12 +371,12 @@ declare class wx {
  */
 declare class BodyConfig {
 
-  debug:boolean;
-  appId:string;
-  timestamp:number;
-  nonceStr:string;
-  signature:string;
-  jsApiList:Array<string>;
+  debug: boolean;
+  appId: string;
+  timestamp: number;
+  nonceStr: string;
+  signature: string;
+  jsApiList: Array<string>;
 
 }
 
@@ -335,8 +386,8 @@ declare class BodyConfig {
  */
 declare class BodyCheckJsAPISupport {
 
-  success:Function;
-  jsApiList:Array<string>;
+  success: Function;
+  jsApiList: Array<string>;
 
 }
 
@@ -345,10 +396,10 @@ declare class BodyCheckJsAPISupport {
  */
 declare class BodyMenuShareTimeline {
 
-  title:string;
-  link:string;
-  imgUrl:string;
-  success:Function;
+  title: string;
+  link: string;
+  imgUrl: string;
+  success: Function;
   cancel: Function;
 
 }
@@ -358,13 +409,13 @@ declare class BodyMenuShareTimeline {
  */
 declare class BodyMenuShareAppMessage {
 
-  title:string;
-  desc:string;
-  link:string;
-  imgUrl:string;
-  type:string;
-  dataUrl:string;
-  success:Function;
+  title: string;
+  desc: string;
+  link: string;
+  imgUrl: string;
+  type: string;
+  dataUrl: string;
+  success: Function;
   cancel: Function;
 
 }
@@ -374,13 +425,13 @@ declare class BodyMenuShareAppMessage {
  */
 declare class BodyMenuShareQQ {
 
-  title:string;
-  desc:string;
-  link:string;
-  imgUrl:string;
-  type:string;
-  dataUrl:string;
-  success:Function;
+  title: string;
+  desc: string;
+  link: string;
+  imgUrl: string;
+  type: string;
+  dataUrl: string;
+  success: Function;
   cancel: Function;
 
 }
@@ -390,10 +441,10 @@ declare class BodyMenuShareQQ {
  */
 declare class BodyTimelineShareData {
 
-  title:string;
-  link:string;
-  imgUrl:string;
-  success:Function;
+  title: string;
+  link: string;
+  imgUrl: string;
+  success: Function;
   cancel: Function;
 
 }
@@ -403,11 +454,11 @@ declare class BodyTimelineShareData {
  */
 declare class BodyAppMessageShareData {
 
-  title:string;
-  link:string;
-  desc:string;
-  imgUrl:string;
-  success:Function;
+  title: string;
+  link: string;
+  desc: string;
+  imgUrl: string;
+  success: Function;
   cancel: Function;
 
 }
@@ -418,11 +469,11 @@ declare class BodyAppMessageShareData {
  */
 declare class BodyMenuShareWeibo {
 
-  title:string;
-  desc:string;
-  link:string;
-  imgUrl:string;
-  success:Function;
+  title: string;
+  desc: string;
+  link: string;
+  imgUrl: string;
+  success: Function;
   cancel: Function;
 
 }
