@@ -157,6 +157,12 @@ declare class wx {
    */
   static chooseImage(body: Object): void;
 
+
+  static getLocalImgData(body: {
+    localId: string,
+    success: (res: { localData: string }) => void
+  }): void;
+
   /**
    * 预览图片接口
    * @param body

@@ -1,6 +1,6 @@
 {
   "name": "js-api-wx",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "微信官方 js-sdk es6 版本",
   "main": "index.js",
   "scripts": {
